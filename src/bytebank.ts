@@ -1,5 +1,6 @@
 let saldo = 3000;
 
+
 const elementoSaldo = document.querySelector(".saldo-valor .valor") as HTMLElement; //Seleciona a classe onde está o nosso saldo
 
 if (elementoSaldo != null) {

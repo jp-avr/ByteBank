@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "ES2023", //ANO DO TYPESCRIPT
+        "outDir": "./dist/js", //PARA ONDE VÃO OS ARQUIVOS QUE O TYPESCRIPT COMPILAR
+        "noEmitOnError": true,
+    },
+    "include": [
+        "./src/**/*" //AS PASTAS ONDE OS ARQUIVOS TYPESCRIPT PARA COMPILAR SERÃO PROCURADOS
+    ]
+}
