@@ -1,4 +1,5 @@
 import Conta from "../types/Conta.js";
+import ExtratoComponent from "./extrato-component.js";
 import SaldoComponent from "./saldo-component.js";
 const elementoFormulario = document.querySelector(".block-nova-transacao form"); //seleciona o form
 try {
@@ -15,7 +16,7 @@ try {
         const inputData = elementoFormulario.querySelector("#data");
         let tipoTransacao = inputTipoTransacao.value;
         let valor = inputValor.valueAsNumber;
-        let data = new Date(inputData.value);
+        let data = new Date(inputData.value + " 00:00:00");
         //OBJETO CONTENDO AS INFORMAÇÕES DAS TRANSAÇÕES
         const novaTransacao = {
             tipoTransacao: tipoTransacao,
@@ -24,6 +25,7 @@ try {
         };
         Conta.registrarTransacao(novaTransacao);
         SaldoComponent.atualizar();
+        ExtratoComponent.atualizar();
         console.log(novaTransacao);
         //Após preencher as informações o formulário será reiniciado
         elementoFormulario.reset();
