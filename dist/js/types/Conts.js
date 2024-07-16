@@ -1,4 +1,4 @@
-import { TipoTransacao } from "./TipoTransacao.js";
+import { TipoTransacao } from "./TipoTransacao";
 export class Conta {
     nome;
     saldo = JSON.parse(localStorage.getItem("saldo")) || 0;
