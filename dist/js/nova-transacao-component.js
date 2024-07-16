@@ -1,8 +1,3 @@
-let saldo = 3000;
-const elementoSaldo = document.querySelector(".saldo-valor .valor"); //Seleciona a classe onde está o nosso saldo
-if (elementoSaldo != null) {
-    elementoSaldo.textContent = saldo.toString(); //altera o valor do saldo
-}
 const elementoFormulario = document.querySelector(".block-nova-transacao form"); //seleciona o form
 //Função que previne o envio do formulário de transação.
 elementoFormulario.addEventListener("submit", function (event) {
@@ -18,22 +13,22 @@ elementoFormulario.addEventListener("submit", function (event) {
     let tipoTransacao = inputTipoTransacao.value;
     let valor = inputValor.valueAsNumber;
     let data = new Date(inputData.value);
-    if (tipoTransacao == "Depósito") {
+    if (tipoTransacao == TipoTransacao.DEPOSITO) {
         saldo += valor;
     }
-    else if (tipoTransacao == "Transferência" || tipoTransacao == "Pagamento de Boleto") {
+    else if (tipoTransacao == TipoTransacao.TRANSFERENCIA || tipoTransacao == TipoTransacao.PAGAMENTO_BOLETO) {
         saldo -= valor;
     }
     else {
         alert("Transação inválida!");
         return;
     }
-    elementoSaldo.textContent = saldo.toString();
+    elementoSaldo.textContent = formatarMoeda(saldo);
     //OBJETO CONTENDO AS INFORMAÇÕES DAS TRANSAÇÕES
     const novaTransacao = {
         tipoTransacao: tipoTransacao,
         valor: valor,
-        data: data
+        data: data,
     };
     console.log(novaTransacao);
     //Após preencher as informações o formulário será reiniciado
