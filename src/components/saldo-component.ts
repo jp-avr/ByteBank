@@ -1,25 +1,28 @@
 import { formatarMoeda } from "../utils/formatadores.js";
 import { formatarData } from "../utils/formatadores.js";
 import { FormatoData } from "../types/formatoData.js";
+import Conta from "../types/Conta.js";
 
-let saldo: number = 3000;
 
 const elementoSaldo = document.querySelector(".saldo-valor .valor") as HTMLElement; //Seleciona a classe onde está o nosso saldo
 const elementoDataAcesso = document.querySelector(".block-saldo time") as HTMLElement;
 
 if (elementoDataAcesso != null) {
-    const dataAcesso: Date = new Date();
-    elementoDataAcesso.textContent = formatarData(dataAcesso, FormatoData.DIA_SEMANA_MES_ANO);
+    elementoDataAcesso.textContent = formatarData(Conta.getDataAcesso(), FormatoData.DIA_SEMANA_MES_ANO);
 }
 
-export function getSaldo(): number {
-    return saldo;
-}
+renderizarSaldo();
 
-atualizarSaldo(saldo);
-export function atualizarSaldo(novoSaldo: number) : void {
-    saldo = novoSaldo;
+function renderizarSaldo() : void {
     if (elementoSaldo != null) {
-        elementoSaldo.textContent = formatarMoeda(saldo);//altera o valor do saldo
+        elementoSaldo.textContent = formatarMoeda(Conta.getSaldo());//altera o valor do saldo
     }
 }
+
+const SaldoComponent = {
+    atualizar() {
+        renderizarSaldo();
+    }
+}
+
+export default SaldoComponent;
